@@ -32,6 +32,19 @@ public class MergeSort {
             }
             posRes++;
         }
+        // copia o restante da esquerda
+        while(posEsq < vetEsq.length){
+            vetor[posRes] = vetEsq[posEsq];
+            posEsq++;
+            posRes++;
+        }
+
+        // copia o restante da direita
+        while(posDir < vetDir.length){
+            vetor[posRes] = vetDir[posDir];
+            posDir++;
+            posRes++;
+        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -45,6 +58,7 @@ public class MergeSort {
         System.out.println(Arrays.toString(nomesDesordenados));
 
         Path caminho = Path.of("data/nomes-desord.txt");
+
         List<String> lista = Files.readAllLines(caminho);
 
         String[] nomes = lista.toArray(new String[0]);
@@ -53,9 +67,10 @@ public class MergeSort {
         mergeSort(nomes);
         long fim = System.currentTimeMillis();
 
-        System.out.println("Tempo de Ordenação de nomes-desord.txt: " + (fim-inicio) + "ms");
+        System.out.println("Tempo de ordenação SelectionSort de"
+                + " nomes-desord.txt: " + (fim - inicio) + "ms");
 
-        for(String nome : nomes){
+        for (String nome : nomes) {
             System.out.println(nome);
         }
     }
